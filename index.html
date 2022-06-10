@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Player</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"> i n c u b a t o r  m u s i c </a>
+        <button class="navbar-toggler" id="butButter" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="toggleNav">
+            <li class="nav-item">
+              <h1> S O U N D S </h1>
+            </li>
+            <li class="nav-item">
+              <button onclick="playSound1()" id="btnSound1" type="button" class="btn btn-outline-secondary"  style="width: 140px;">Bubble Sound</button>
+            </li>
+            <li class="nav-item">
+              <button onclick="playSound2()" id="btnSound2" type="button" class="btn btn-outline-secondary"  style="width: 140px;">Correct</button>
+            </li>
+            <li class="nav-item">
+              <button onclick="playSound3()" id="btnSound3" type="button" class="btn btn-outline-secondary"  style="width: 140px;">Alien Shoot</button>
+            </li>
+            <li class="nav-item">
+              <button onclick="playSound4()" id="btnSound4" type="button" class="btn btn-outline-secondary"  style="width: 140px;">Pop</button>
+            </li>
+            <li class="nav-item">
+              <button onclick="playSound5()" id="btnSound5" type="button" class="btn btn-outline-secondary"  style="width: 140px;">Arrow</button>
+            </li>
+  
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="everything">
+      <div class="background">
+        <video id="video-background" muted="">
+          <source
+            id="vidSrc"
+            src="https://cdn.videvo.net/videvo_files/video/free/2014-06/large_watermarked/Blue_Sky_and_Clouds_Timelapse_0892__Videvo_preview.mp4"
+          />
+        </video>
+        <div id="buttons">
+          <i
+            id="btnPrev"
+            disabled="false"
+            style="color: #537d8d8f"
+            onclick="prevMusic()"
+            class="fas fa-step-backward fa-3x"
+          ></i>
+          <i
+            id="btnAudPlay"
+            onclick="playMusic()"
+            class="far fa-play-circle fa-3x"
+          ></i>
+          <i
+            id="btnNext"
+            onclick="nextMusic()"
+            class="fas fa-step-forward fa-3x"
+          ></i>
+          <i
+          id="btnChangeVid"
+          style="color: #537d8d8f"
+          onclick="shuffle()"
+          class="fas fa-random fa-3x"
+        ></i>
+        </div>
+        <div class="player">
+          <span>
+            <small
+              id="startTime"
+              style="
+                float: left;
+                position: relative;
+                left: 15px;
+                padding: 20px 0;
+              "
+            ></small>
+            <small
+              id="endTime"
+              style="
+                float: right;
+                position: relative;
+                right: 10px;
+                padding: 20px 0;
+              "
+            ></small>
+            <progress id="progressbar" value="0" max="1"></progress>
+          </span>
+        </div>
+        <div id="info">
+          <h2 id="song">Amour Plastique</h2>
+          <h1 id="songwriter">Videoclub</h1>
+        </div>
+      </div>
+      <div id="sounds">
+        <h1> S O U N D S </h1>
+        <button onclick="playSound1()" id="btnSound1" type="button" class="btn btn-outline-secondary"  style="width: 140px;">Bubble Sound</button>
+        <button onclick="playSound2()" id="btnSound2" type="button" class="btn btn-outline-secondary"  style="width: 140px;">Correct</button>
+        <button onclick="playSound3()" id="btnSound3" type="button" class="btn btn-outline-secondary"  style="width: 140px;">Alien Shoot</button>
+        <button onclick="playSound4()" id="btnSound4" type="button" class="btn btn-outline-secondary"  style="width: 140px;">Pop</button>
+        <button onclick="playSound5()" id="btnSound5" type="button" class="btn btn-outline-secondary"  style="width: 140px;">Arrow</button>
+      </div>
+    </div>
+    <div>
+      <audio controls id="audio" ontimeupdate="initProgressBar()">
+        <source
+          id="audSrc"
+          src="https://now.morsmusic.org/load/423380314/Videoclub_-_Amour_plastique_(musmore.com).mp3"
+        />
+      </audio>
+    </div>
+    <audio controls id="sound1">
+      <source
+        src="http://commondatastorage.googleapis.com/codeskulptor-assets/week7-bounce.m4a"
+      />
+    </audio>
+    <audio controls id="sound2">
+      <source
+        src="http://commondatastorage.googleapis.com/codeskulptor-assets/week7-brrring.m4a"
+      />
+    </audio>
+    <audio controls id="sound3">
+      <source
+        src="http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/alien_shoot.wav"
+      />
+    </audio>
+    <audio controls id="sound4">
+      <source
+        src="http://codeskulptor-demos.commondatastorage.googleapis.com/pang/pop.mp3"
+      />
+    </audio>
+    <audio controls id="sound5">
+      <source
+        src="http://codeskulptor-demos.commondatastorage.googleapis.com/pang/arrow.mp3"
+      />
+    </audio>
+  </body>
+  
+  <script
+    src="https://kit.fontawesome.com/a076d05399.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="/script.js"></script>
+</html>
